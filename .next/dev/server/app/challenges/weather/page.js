@@ -1,6 +1,6 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/challenges/weather/page.js")
 R.c("server/chunks/ssr/0y88_next_dist_098n35e._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__070d2x-._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0pmtrhv._.js")
 R.c("server/chunks/ssr/0y88_next_dist_esm_server_0cd0f8i._.js")
 R.c("server/chunks/ssr/0y88_next_dist_esm_lib_1r2jpey._.js")
 R.c("server/chunks/ssr/0y88_next_dist_esm_1z4c5-l._.js")

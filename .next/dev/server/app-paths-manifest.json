@@ -1,6 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/challenges/todo-list/page": "app/challenges/todo-list/page.js",
   "/challenges/weather/page": "app/challenges/weather/page.js",
   "/page": "app/page.js"
 }
