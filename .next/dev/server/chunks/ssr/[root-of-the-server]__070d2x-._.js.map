@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/thoraya/workspace/dev/daily-frontend-challenges/src/app/challenges/weather/page.tsx"],"sourcesContent":["import React from 'react'\n\nconst WeatherApp = () => {\n    return (\n        <div>\n            <h1>weather page</h1>\n        </div>\n    )\n}\n\nexport default WeatherApp;"],"names":["WeatherApp"],"mappings":";;;;;;AAEA,MAAMA,aAAa;IACf,qBACI,mbAAC;kBACG,cAAA,mbAAC;sBAAG;;;;;;;;;;;AAGhB;uCAEeA"}}]
+}

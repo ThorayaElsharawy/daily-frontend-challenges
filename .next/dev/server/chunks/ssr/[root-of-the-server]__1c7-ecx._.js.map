@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/thoraya/workspace/dev/daily-frontend-challenges/src/app/challenges/todo-list/page.tsx"],"sourcesContent":["import React from 'react'\n\nconst TodoList = () => {\n    return (\n        <div>\n            <h1>TodoList page</h1>\n        </div>\n    )\n}\n\nexport default TodoList;"],"names":["TodoList"],"mappings":";;;;;;AAEA,MAAMA,WAAW;IACb,qBACI,mbAAC;kBACG,cAAA,mbAAC;sBAAG;;;;;;;;;;;AAGhB;uCAEeA"}}]
+}
