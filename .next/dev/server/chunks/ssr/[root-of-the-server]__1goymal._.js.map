@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/thoraya/workspace/dev/daily-frontend-challenges/src/app/page.tsx"],"sourcesContent":["import Link from \"next/link\";\n\nexport default function Home() {\n    return (\n        <main>\n            <div>\n                <Link href='/challenges/weather'>Weather</Link>\n            </div>\n            <div>\n                <Link href='/challenges/todo-list'>Todo list</Link>\n            </div>\n        </main>\n    );\n}\n"],"names":["Home","href"],"mappings":";;;;;AAAA;;;AAEe,SAASA;IACpB,qBACI,mbAAC;;0BACG,mbAAC;0BACG,cAAA,mbAAC,+XAAI;oBAACC,MAAK;8BAAsB;;;;;;;;;;;0BAErC,mbAAC;0BACG,cAAA,mbAAC,+XAAI;oBAACA,MAAK;8BAAwB;;;;;;;;;;;;;;;;;AAInD"}}]
-}
