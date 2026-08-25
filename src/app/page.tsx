@@ -29,7 +29,7 @@ const challenges = [
         description:
             "Stay focused with a productivity timer designed around short, intentional working sessions.",
         tags: ["Timer", "JavaScript"],
-        href: "/challenges/pomodoro",
+        href: "/challenges/kanban-board",
         color: "from-[#ffe8e2] to-[#fff2ef]",
     },
 
