@@ -77,7 +77,7 @@ const WeatherApp = () => {
                         value={city}
                         className="bg-[#ebfffc] text-[#555] px-6 h-16 flex-1 mr-4 rounded-4xl text-base outline-0"
                         type="text" placeholder="Enter city name" spellCheck="false"/>
-                    <button onClick={handleClick} className="outline-0 bg-[#ebfffc] rounded-full w-14 h-14 text-center">
+                    <button onClick={handleClick} className="outline-0 bg-[#ebfffc] rounded-full w-14 h-14 text-center cursor-pointer">
                         <img className="w-4 m-auto" src="../imgs/search.png" alt="Search icon"/>
                     </button>
                 </div>
