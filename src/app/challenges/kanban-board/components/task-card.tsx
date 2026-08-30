@@ -24,6 +24,10 @@ const TaskCard = ({task, updateTaskTitle}: {
 
     return (
         <article
+            draggable
+            onDragStart={(e) => {
+                e.dataTransfer.setData('id', task.id);
+            }}
             className={`group rounded-2xl border border-zinc-200 bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300
             cursor-pointer hover:border-zinc-400
             ${task.completed ? "opacity-70" : ""}

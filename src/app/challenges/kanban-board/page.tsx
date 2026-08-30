@@ -3,7 +3,7 @@
 import React, {useState} from "react";
 import TaskCard from "@/app/challenges/kanban-board/components/task-card";
 
-type TaskCardProps = {
+type Task = {
     id: number;
     title: string;
     description: string;
@@ -18,10 +18,12 @@ type TaskCardProps = {
     priority: 'low' | 'medium' | 'high';
 };
 
+type Status = 'todo' | 'inprogress' | 'review' | 'done'
+
 
 const KanbanBoard = () => {
 
-    const initialTasks: TaskCardProps[] = [
+    const initialTasks: Task[] = [
         {
             id: 1,
             title: 'Design landing page',
@@ -121,12 +123,26 @@ const KanbanBoard = () => {
         }
     })
 
-    const updateTaskTitle = (task: TaskCardProps, title: string) => {
-        const updatedTask = tasks.map(t => {
-           return  task.id === t.id ? { ...t, title } : t
-        })
+    const updateTaskTitle = (task: Task, title: string) => {
+        updateTask({...task, title});
+    }
 
-        setTasks(updatedTask)
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>, status: Status) => {
+        e.preventDefault();
+        const id: number = +(e.dataTransfer.getData('id'));
+        const task = tasks.find(t => t.id === id);
+        if (task) {
+            updateTask({...task, status});
+        }
+    }
+
+    const updateTask = (task: Task) => {
+        console.log(task);
+        const newTask = tasks.map(t => {
+            return task.id === t.id ? task : t
+        })
+        console.log(newTask);
+        setTasks(newTask)
     }
 
     return (
@@ -185,7 +201,10 @@ const KanbanBoard = () => {
                 <div className="grid grid-cols-4 gap-4 min-w-[1200px]">
                     {
                         columns.map((column) => (
-                            <div className="rounded-2xl border border-zinc-200 bg-zinc-100/70 p-4" key={column.status}>
+                            <div
+                                onDrop={(e) => handleDrop(e, column.status)}
+                                onDragOver={(e) => e.preventDefault()}
+                                className="rounded-2xl border border-zinc-200 bg-zinc-100/70 p-4" key={column.status}>
                                 <div className="mb-4 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <span className={`h-3 w-3 rounded-full border-2 
