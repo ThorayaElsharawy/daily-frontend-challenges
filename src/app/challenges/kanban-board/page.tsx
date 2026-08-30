@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, {useState} from "react";
+import TaskCard from "@/app/challenges/kanban-board/components/task-card";
 
 type TaskCardProps = {
     id: number;
@@ -14,12 +15,13 @@ type TaskCardProps = {
     completed?: boolean;
     assignee: string;
     status: 'todo' | 'inprogress' | 'review' | 'done';
+    priority: 'low' | 'medium' | 'high';
 };
 
 
 const KanbanBoard = () => {
 
-    const tasks: TaskCardProps[] = [
+    const initialTasks: TaskCardProps[] = [
         {
             id: 1,
             title: 'Design landing page',
@@ -31,7 +33,8 @@ const KanbanBoard = () => {
             attachments: 2,
             completed: false,
             assignee: 'TE',
-            status: 'todo'
+            status: 'todo',
+            priority: "low"
         },
         {
             id: 2,
@@ -44,7 +47,8 @@ const KanbanBoard = () => {
             attachments: 1,
             completed: false,
             assignee: 'TE',
-            status: 'todo'
+            status: 'todo',
+            priority: "medium"
         },
         {
             id: 3,
@@ -57,7 +61,8 @@ const KanbanBoard = () => {
             attachments: 2,
             completed: false,
             assignee: 'TE',
-            status: 'inprogress'
+            status: 'inprogress',
+            priority: "high"
         },
         {
             id: 4,
@@ -70,7 +75,8 @@ const KanbanBoard = () => {
             attachments: 1,
             completed: false,
             assignee: 'TE',
-            status: 'inprogress'
+            status: 'inprogress',
+            priority: "low"
         },
         {
             id: 5,
@@ -83,7 +89,8 @@ const KanbanBoard = () => {
             attachments: 2,
             completed: true,
             assignee: 'TE',
-            status: 'done'
+            status: 'done',
+            priority: "medium"
         },
         {
             id: 6,
@@ -96,11 +103,15 @@ const KanbanBoard = () => {
             attachments: 1,
             completed: true,
             assignee: 'TE',
-            status: 'done'
+            status: 'done',
+            priority: "high"
         }
     ]
 
+    const [tasks, setTasks] = useState(initialTasks)
+
     const statuses = ['todo', 'inprogress', 'review', 'done'];
+    const priorities = ['low', 'medium', 'high'];
 
     const columns = statuses.map(status => {
         const taskInColumn = tasks.filter(task => task.status === status)
@@ -110,10 +121,17 @@ const KanbanBoard = () => {
         }
     })
 
+    const updateTaskTitle = (task: TaskCardProps, title: string) => {
+        const updatedTask = tasks.map(t => {
+           return  task.id === t.id ? { ...t, title } : t
+        })
+
+        setTasks(updatedTask)
+    }
+
     return (
         <main className="min-h-screen bg-[#f7f7f8] px-6 py-8 text-zinc-900">
             <div className="mx-auto max-w-7xl">
-
                 {/* Header */}
                 <header className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                     {/* Title */}
@@ -170,8 +188,15 @@ const KanbanBoard = () => {
                             <div className="rounded-2xl border border-zinc-200 bg-zinc-100/70 p-4" key={column.status}>
                                 <div className="mb-4 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <span className="h-3 w-3 rounded-full border-2 border-yellow-400"/>
-                                        <h2 className="font-semibold">To Do</h2>
+                                        <span className={`h-3 w-3 rounded-full border-2 
+                                        
+                                        ${column.status === 'todo' && 'border-yellow-400'}
+                                        ${column.status === 'inprogress' && 'border-green-400'}
+                                        ${column.status === 'review' && 'border-yellow-400'}
+                                        ${column.status === 'done' && 'border-yellow-400'}
+                                        
+                                        `}/>
+                                        <h2 className="font-semibold uppercase">{column.status}</h2>
                                         <span
                                             className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-zinc-500">4</span>
                                     </div>
@@ -184,16 +209,8 @@ const KanbanBoard = () => {
                                         column.tasks.map(task => (
                                             <TaskCard
                                                 key={task.id}
-                                                id={task.id}
-                                                title={task.title}
-                                                description={task.description}
-                                                tag={task.tag} tagColor={task.tagColor}
-                                                date={task.date}
-                                                comments={task.comments}
-                                                attachments={task.attachments}
-                                                assignee={task.assignee}
-                                                status={task.status}
-                                                completed={task.completed}
+                                                task={task}
+                                                updateTaskTitle={updateTaskTitle}
                                             />
                                         ))
                                         : (
@@ -220,48 +237,3 @@ const KanbanBoard = () => {
 
 
 export default KanbanBoard;
-
-
-const TaskCard = ({
-                      title,
-                      description,
-                      tag,
-                      tagColor,
-                      date,
-                      comments,
-                      attachments,
-                      completed,
-                      assignee,
-                      status
-                  }: TaskCardProps) => {
-    return (
-        <article
-            className={`group rounded-2xl border border-zinc-200 bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300
-            cursor-pointer hover:border-zinc-400
-            ${completed ? "opacity-70" : ""}
-            `}>
-            <div className="mb-3">
-                <h3 className={`mb-4 font-semibold leading-5 ${completed && 'line-through'}`}>{title}</h3>
-                <p className="mb-4 text-sm leading-5 text-zinc-500">{description}</p>
-                <p className={`inline-flex rounded-lg px-2.5 py-1 text-xs font-medium ${completed ? 'bg-gray-400 text-white' : tagColor}`}>{tag}</p>
-                <div className="my-4 h-px bg-zinc-100"/>
-                <div className="flex items-center justify-between text-xs text-zinc-400">
-                    <div className="flex items-center gap-3">
-                        <span className="flex items-center gap-1">📅 {date}</span>
-                        <span className="flex items-center gap-1">💬 {comments > 0 && comments}</span>
-                        <span className="flex items-center gap-1">📎 {attachments > 0 && attachments}</span>
-                    </div>
-                    {/* Avatar */}
-                    <div
-                        className="flex h-7 w-7 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white">
-                        {assignee}
-                    </div>
-                </div>
-
-            </div>
-
-        </article>
-
-    )
-
-}
