@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 const challenges = [
@@ -32,6 +31,16 @@ const challenges = [
         href: "/challenges/kanban-board",
         color: "from-[#ffe8e2] to-[#fff2ef]",
     },
+    {
+        number: "04",
+        title: "E Commerce",
+        icon: "📊️",
+        description:
+            "A modern e-commerce platform for showcasing products, organizing categories, and creating a seamless business experience.",
+        tags: ["Products", "Business"],
+        href: "/challenges/e-commerce",
+        color: "from-[#e3f6f5] to-[#f1fbfa]",
+    }
 
 ];
 
@@ -198,7 +207,7 @@ export default function Home() {
                 <p>Daily Frontend Challenges</p>
 
                 <p>
-                    Keep building. Keep improving.
+                    Keep building Thoraya. Keep improving yourself 🚀.
                 </p>
             </footer>
 
