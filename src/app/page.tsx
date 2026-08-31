@@ -154,9 +154,6 @@ export default function Home() {
                                     </span>
                                 </div>
 
-                                {/* ICON */}
-
-
                                 {/* CONTENT */}
                                 <div className="relative mt-8">
                                     <h3 className="text-4xl font-bold uppercase tracking-[-0.03em] text-gray-900">

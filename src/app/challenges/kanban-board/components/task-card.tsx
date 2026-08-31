@@ -1,23 +1,9 @@
 import React, {useState} from "react";
-
-type TaskCardProps = {
-    id: number;
-    title: string;
-    description: string;
-    tag: string;
-    tagColor: string;
-    date: string;
-    comments: number;
-    attachments: number;
-    completed?: boolean;
-    assignee: string;
-    status: 'todo' | 'inprogress' | 'review' | 'done';
-    priority: 'low' | 'medium' | 'high';
-};
+import {Task} from "@/app/challenges/kanban-board/utils/data-tasks";
 
 const TaskCard = ({task, updateTaskTitle}: {
-    task: TaskCardProps
-    updateTaskTitle: (task: TaskCardProps, title: string) => void
+    task: Task
+    updateTaskTitle: (task: Task, title: string) => void
 }) => {
 
     const [isEditingTitle, setEditingTitle] = useState(false);
@@ -26,7 +12,7 @@ const TaskCard = ({task, updateTaskTitle}: {
         <article
             draggable
             onDragStart={(e) => {
-                e.dataTransfer.setData('id', task.id);
+                e.dataTransfer.setData('id', String(task.id));
             }}
             className={`group rounded-2xl border border-zinc-200 bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300
             cursor-pointer hover:border-zinc-400
@@ -77,7 +63,6 @@ const TaskCard = ({task, updateTaskTitle}: {
                 </div>
 
             </div>
-
         </article>
 
     )
