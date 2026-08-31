@@ -16,10 +16,10 @@ const TaskCard = ({task, updateTaskTitle}: {
             }}
             className={`group rounded-2xl border border-zinc-200 bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300
             cursor-pointer hover:border-zinc-400
-            ${task.completed ? "opacity-70" : ""}
+            ${task.status === 'done' ? "opacity-70" : ""}
             `}>
             <div className="mb-3">
-                <div className={`mb-4 font-semibold leading-5 flex justify-between ${task.completed && 'line-through'}`}>
+                <div className={`mb-4 font-semibold leading-5 flex justify-between ${task.status === 'done' && 'line-through'}`}>
                     {isEditingTitle ? (
                         <input
                             className="w-full"
@@ -39,7 +39,7 @@ const TaskCard = ({task, updateTaskTitle}: {
                     {task.description}
                 </p>
                 <div className="flex items-center justify-between gap-2">
-                    <p className={`inline-flex rounded-lg px-2.5 py-1 text-xs font-medium ${task.completed ? 'bg-gray-400 text-white' : task.tagColor}`}>
+                    <p className={`inline-flex rounded-lg px-2.5 py-1 text-xs font-medium ${task.status === 'done' ? 'bg-gray-400 text-white' : task.tagColor}`}>
                         {task.tag}
                     </p>
                     <p>

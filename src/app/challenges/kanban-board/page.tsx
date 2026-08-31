@@ -11,7 +11,7 @@ const KanbanBoard = () => {
 
     const initialTasks: Task[] = [
         {
-            id: 1,
+            id: "1",
             title: 'Design landing page',
             description: "Create the new homepage layout.",
             tag: 'Design',
@@ -25,7 +25,7 @@ const KanbanBoard = () => {
             priority: "low"
         },
         {
-            id: 2,
+            id: "2",
             title: 'Create dashboard',
             description: "Build the main dashboard structure.",
             tag: 'UI',
@@ -39,7 +39,7 @@ const KanbanBoard = () => {
             priority: "medium"
         },
         {
-            id: 3,
+            id: "3",
             title: 'Design landing page',
             description: "Create the new homepage layout.",
             tag: 'Design',
@@ -53,7 +53,7 @@ const KanbanBoard = () => {
             priority: "high"
         },
         {
-            id: 4,
+            id: "4",
             title: 'Create dashboard',
             description: "Build the main dashboard structure.",
             tag: 'UI',
@@ -67,7 +67,7 @@ const KanbanBoard = () => {
             priority: "low"
         },
         {
-            id: 5,
+            id: "5",
             title: 'Design landing page',
             description: "Create the new homepage layout.",
             tag: 'Design',
@@ -81,7 +81,7 @@ const KanbanBoard = () => {
             priority: "medium"
         },
         {
-            id: 6,
+            id: "6",
             title: 'Create dashboard',
             description: "Build the main dashboard structure.",
             tag: 'UI',
@@ -114,14 +114,25 @@ const KanbanBoard = () => {
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>, status: Status) => {
         e.preventDefault();
-        const id: number = +(e.dataTransfer.getData('id'));
+        const id: string = e.dataTransfer.getData('id');
         const task = tasks.find(t => t.id === id);
         if (task) {
             updateTask({...task, status});
         }
     }
 
+    const handleAddNewTask = (task: Task) => {
+        setTasks(prev => [...prev, task]);
+        setIsModalOpen(false);
+    }
+
     const updateTask = (task: Task) => {
+        setTasks(prevTask =>
+            prevTask.map(t =>
+                t.id === task.id ? task : { ...task, t }
+            )
+        )
+
         const newTask = tasks.map(t => {
             return task.id === t.id ? task : t
         })
@@ -192,7 +203,7 @@ const KanbanBoard = () => {
             </div>
 
             {isModalOpen && (
-                <AddTaskModal setIsModalOpen={setIsModalOpen}/>
+                <AddTaskModal setIsModalOpen={setIsModalOpen} onAddTask={handleAddNewTask}/>
             )}
         </main>
     );

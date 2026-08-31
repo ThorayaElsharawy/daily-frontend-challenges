@@ -1,6 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 
-const Header = ({setIsModalOpen}) => {
+type HeaderProps = {
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header = ({setIsModalOpen}: HeaderProps) => {
 
     return (
         <header className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
