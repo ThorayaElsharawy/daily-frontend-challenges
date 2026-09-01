@@ -23,13 +23,11 @@ const AddTaskModal = ({setIsModalOpen, onAddTask}: AddTaskModalProps) => {
             tag: formData.get("tag") as string,
             date: formData.get("date") as string,
             assignee: formData.get("assignee") as string,
-            id:  crypto.randomUUID(),
+            id: crypto.randomUUID(),
             tagColor: "bg-purple-100 text-black",
             comments: 2,
             attachments: 1
         };
-
-        console.log(newTask);
 
         onAddTask(newTask)
     }

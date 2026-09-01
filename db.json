@@ -1,0 +1,53 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Minimal Chair",
+      "category": "Furniture",
+      "price": 129,
+      "stock": 42,
+      "status": "In Stock"
+    },
+    {
+      "id": "2",
+      "name": "Leather Bag",
+      "category": "Accessories",
+      "price": 185,
+      "stock": 18,
+      "status": "Low Stock"
+    }
+  ],
+  "orders": [
+    {
+      "id": "hxwZrN2ZrRU",
+      "createdAt": "2026-09-01T12:21:23.219Z",
+      "customer": "Mandoop1",
+      "email": "Mandoop1@gmail.com",
+      "product": "Mandoop1",
+      "quantity": 333,
+      "amount": 3333,
+      "status": "pending"
+    },
+    {
+      "id": "9BHael-Tasg",
+      "createdAt": "2026-09-01T12:21:52.875Z",
+      "customer": "Mandoop2",
+      "email": "Mandoop2@gmail.com",
+      "product": "Mandoop2",
+      "quantity": 2222,
+      "amount": 222,
+      "status": "pending"
+    },
+    {
+      "id": "P2JjFymeMp4",
+      "createdAt": "2026-09-01T12:22:28.347Z",
+      "customer": "Mandoop3",
+      "email": "Mandoop3@gmail.com",
+      "product": "Mandoop3",
+      "quantity": 333,
+      "amount": 333,
+      "status": "pending"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
