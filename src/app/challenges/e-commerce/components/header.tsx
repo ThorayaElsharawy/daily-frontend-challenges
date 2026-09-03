@@ -1,6 +1,15 @@
-import AddNewOrder from "@/app/challenges/e-commerce/components/add-new-order";
+"use client"
+
+import {useState} from "react";
+import OrderFormModal from "@/app/challenges/e-commerce/components/order-form-modal";
 
 const EcommerceHeader = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleClose = () => {
+        setIsModalOpen(false);
+    }
+
     return (
         <header className="border-b border-black/5 bg-white px-6 py-5 sm:px-8">
             <div className="flex items-center justify-between">
@@ -10,7 +19,16 @@ const EcommerceHeader = () => {
                     <button
                         className=" hidden h-11 w-11 items-center justify-center rounded-xl border border-black/5 bg-white text-gray-500 sm:flex "> 🔔
                     </button>
-                    <AddNewOrder/>
+                    <button
+                        onClick={() => setIsModalOpen(true)}
+                        className=" flex h-11 items-center gap-2 rounded-xl bg-[#181818] px-4 text-sm font-semibold text-white cursor-pointer">
+                        <span>+</span> Add Order
+                    </button>
+
+                    {isModalOpen && (
+                        <OrderFormModal onClose={handleClose}/>
+                    )}
+
                 </div>
             </div>
         </header>

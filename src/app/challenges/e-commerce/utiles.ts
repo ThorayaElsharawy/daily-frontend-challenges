@@ -1,12 +1,10 @@
 export type Order = {
-    id: number;
+    id: string;
     customer: string;
     product: string;
     amount: number;
-    status: string;
-    createdAt: Date;
+    status: "pending" | "processing" | "completed" | "cancelled";
+    createdAt: string;
+    email: string;
+    quantity: number;
 };
-
-export type RecordsProps = {
-    orders: Order[];
-}
