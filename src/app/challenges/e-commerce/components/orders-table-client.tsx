@@ -4,8 +4,10 @@ import {Order} from "@/app/challenges/e-commerce/utiles";
 import OrderRow from "@/app/challenges/e-commerce/components/order-row";
 import React, {useState} from "react";
 import OrderFormModal from "@/app/challenges/e-commerce/components/order-form-modal";
+import {useRouter} from "next/navigation";
 
 const OrdersTableClient = ({orders}: { orders: Order[] }) => {
+    const router = useRouter();
     const [selectedOrder, setSelectedOrder] = useState<Order | null>();
 
     const handleEditRow = (id: string) => {
@@ -18,11 +20,18 @@ const OrdersTableClient = ({orders}: { orders: Order[] }) => {
     }
 
     const handleDeleteRow = async (id: string) => {
-        const response = fetch(`http://localhost:3001/orders/${id}`, {
-            method: "DELETE"
-        })
+        try {
+            const response = await fetch(`http://localhost:3001/orders/${id}`, {
+                method: "DELETE"
+            })
 
-
+            if (!response.ok) {
+                throw new Error("Could not delete order");
+            }
+            router.refresh();
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -40,13 +49,14 @@ const OrdersTableClient = ({orders}: { orders: Order[] }) => {
                 </thead>
                 <tbody>
                 {orders?.map((order: Order) => (
-                    <OrderRow order={order} key={order.id} handleEditRow={handleEditRow} handleDeleteRow={handleDeleteRow}/>
+                    <OrderRow order={order} key={order.id} handleEditRow={handleEditRow}
+                              handleDeleteRow={handleDeleteRow}/>
                 ))}
                 </tbody>
             </table>
             {
                 selectedOrder && (
-                    <OrderFormModal onClose={closeModal} selectedOrder={selectedOrder} />
+                    <OrderFormModal onClose={closeModal} selectedOrder={selectedOrder}/>
                 )
             }
         </>

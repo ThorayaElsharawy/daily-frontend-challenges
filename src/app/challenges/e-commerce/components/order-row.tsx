@@ -11,12 +11,11 @@ type OrderRowProps = {
 }
 
 const OrderRow = ({order, handleEditRow, handleDeleteRow}: OrderRowProps) => {
-    const router = useRouter();
+
 
     const handleDelete = (e: React.MouseEvent<HTMLTableCellElement> , id: string) => {
         e.stopPropagation()
         handleDeleteRow(id);
-        router.refresh()
     }
 
     return (

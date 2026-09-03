@@ -1,18 +1,26 @@
 import React from "react";
 import {Order} from "@/app/challenges/e-commerce/utiles";
-import OrderRow from "@/app/challenges/e-commerce/components/order-row";
 import {OrdersTableClient} from "@/app/challenges/e-commerce/components/orders-table-client";
 
 const OrderTable = async () => {
-    const response = await fetch("http://localhost:3001/orders");
-    if (!response.ok) throw new Error("Failed to fetch orders");
-    const orders = await response.json();
+    let orders: Order[] = [];
+    let hasError = false;
 
-    orders.sort(
-        (a: Order, b: Order) =>
-            new Date(b.createdAt).getTime() -
-            new Date(a.createdAt).getTime()
-    );
+    try {
+        const response = await fetch("http://localhost:3001/orders");
+        if (!response.ok) throw new Error("Failed to fetch orders");
+        orders = await response.json();
+
+        orders.sort(
+            (a: Order, b: Order) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+        );
+
+    } catch (error) {
+        console.log(error);
+        hasError = true;
+    }
 
 
     return (
@@ -24,7 +32,7 @@ const OrderTable = async () => {
                 </button>
             </div>
             <div className="overflow-x-auto">
-               <OrdersTableClient orders={orders} />
+                {hasError ? <p className="text-center p-12">Failed to load orders.</p> : <OrdersTableClient orders={orders}/>}
             </div>
         </section>
     )
